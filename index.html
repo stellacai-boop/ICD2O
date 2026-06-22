@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌸 Size Converter</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+    <style>
+        /* ========================================
+           🌸 All Styles — Clean & Minimal
+           ======================================== */
+
+        :root {
+            --bg: #f0ebe5;
+            --card-bg: #faf7f4;
+            --text: #3d342e;
+            --text-dark: #2a221e;
+            --text-medium: #5a4a40;
+            --text-light: #8a7a6e;
+            --accent: #b8988e;
+            --accent-hover: #9e7e74;
+            --accent-dark: #7a6258;
+            --border: #ddd2ca;
+            --shadow: rgba(90, 70, 60, 0.13);
+            --radius: 20px;
+            --transition: 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg);
+            padding: 20px;
+        }
+
+        /* ========================================
+           CONTAINER
+           ======================================== */
+        .container {
+            width: 100%;
+            max-width: 560px;
+            animation: fadeInUp 1s ease;
+        }
+
+        /* ========================================
+           HEADER
+           ======================================== */
+        header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        header h1 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 2.8rem;
+            letter-spacing: 5px;
+            color: var(--text-dark);
+        }
+
+        header h1::before {
+            content: '✧ ';
+            font-size: 1.8rem;
+            color: var(--accent);
+            font-weight: 400;
+        }
+        header h1::after {
+            content: ' ✧';
+            font-size: 1.8rem;
+            color: var(--accent);
+            font-weight: 400;
+        }
+
+        .subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 400;
+            font-style: italic;
+            font-size: 1.1rem;
+            color: var(--text-medium);
+            letter-spacing: 8px;
+            margin-top: 2px;
+        }
+
+        /* ========================================
+           CARD
+           ======================================== */
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 32px 30px 26px;
+            box-shadow: 0 12px 48px var(--shadow);
+            border: 1px solid rgba(255, 248, 244, 0.6);
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            box-shadow: 0 18px 56px rgba(90, 70, 60, 0.18);
+        }
+
+        /* ========================================
+           TABS
+           ======================================== */
+        .tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 22px;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 12px;
+        }
+
+        .tab-btn {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            padding: 8px 18px;
+            border: none;
+            border-radius: 12px;
+            background: transparent;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .tab-btn:hover {
+            background: #ede6e0;
+            color: var(--text-dark);
+        }
+
+        .tab-btn.active {
+            background: var(--accent);
+            color: #fcf9f6;
+            box-shadow: 0 4px 12px rgba(184, 152, 142, 0.25);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* ========================================
+           INPUT
+           ======================================== */
+        .input-section {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .input-group label {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            font-size: 0.8rem;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--text-medium);
+            margin-left: 2px;
+        }
+
+        .input-group input,
+        .input-group select {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 500;
+            font-size: 1.15rem;
+            padding: 13px 16px;
+            border: 2px solid var(--border);
+            border-radius: 14px;
+            background: #fdfaf7;
+            color: var(--text-dark);
+            transition: var(--transition);
+            outline: none;
+            width: 100%;
+            appearance: none;
+        }
+
+        .input-group input::placeholder {
+            color: #c4b8ae;
+            font-style: italic;
+            font-weight: 400;
+        }
+
+        .input-group input:focus,
+        .input-group select:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 4px rgba(184, 152, 142, 0.15);
+            background: #fffcf9;
+        }
+
+        .input-group select {
+            cursor: pointer;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'%3E%3Cpath d='M1 1l6 6 6-6' stroke='%238a7a6e' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            background-size: 14px;
+        }
+
+        .input-group select option {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 500;
+            font-size: 1rem;
+        }
+
+        /* ========================================
+           BUTTON
+           ======================================== */
+        .convert-btn {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 5px;
+            padding: 15px;
+            border: none;
+            border-radius: 14px;
+            background: var(--accent);
+            color: #fcf9f6;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 2px;
+        }
+
+        .convert-btn:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(184, 152, 142, 0.35);
+        }
+
+        .convert-btn:active {
+            transform: scale(0.97) translateY(0);
+        }
+
+        /* ========================================
+           ERROR
+           ======================================== */
+        .error-message {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-weight: 600;
+            font-size: 1rem;
+            color: #b8847a;
+            min-height: 26px;
+            padding: 6px 0 2px;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            text-align: center;
+        }
+
+        .error-message.show {
+            opacity: 1;
+        }
+
+        /* ========================================
+           RESULTS
+           ======================================== */
+        .results {
+            margin-top: 22px;
+            padding-top: 18px;
+            border-top: 2px dashed var(--border);
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 16px;
+            border-radius: 12px;
+            background: #f5efe9;
+            transition: var(--transition);
+        }
+
+        .result-item:hover {
+            background: #eee6df;
+            transform: translateX(4px);
+        }
+
+        .unit-label {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 1.5px;
+            color: var(--text-medium);
+            text-transform: lowercase;
+        }
+
+        .result-value {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: var(--text-dark);
+            transition: var(--transition);
+            min-width: 76px;
+            text-align: right;
+        }
+
+        .result-value.pop {
+            animation: pop 0.35s ease;
+        }
+
+        /* ========================================
+           PRESETS
+           ======================================== */
+        .presets {
+            margin-top: 18px;
+            padding-top: 16px;
+            border-top: 2px dashed var(--border);
+        }
+
+        .preset-label {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            font-size: 0.7rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--text-medium);
+            display: block;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .preset-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .preset-btn {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            font-size: 0.8rem;
+            padding: 6px 14px;
+            border: 2px solid var(--border);
+            border-radius: 20px;
+            background: transparent;
+            color: var(--text-medium);
+            cursor: pointer;
+            transition: var(--transition);
+            letter-spacing: 0.5px;
+        }
+
+        .preset-btn:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #fcf9f6;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(184, 152, 142, 0.3);
+        }
+
+        .preset-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* ========================================
+           RECOMMENDATION
+           ======================================== */
+        .recommendation-box {
+            margin-top: 16px;
+            padding: 14px 18px;
+            background: #f0e8e2;
+            border-radius: 12px;
+            border-left: 4px solid var(--accent);
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .recommendation-box.show {
+            display: block;
+        }
+
+        .recommendation-box h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            color: var(--text-dark);
+            margin-bottom: 4px;
+        }
+
+        .recommendation-box p {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 400;
+            font-size: 1rem;
+            color: var(--text-medium);
+            line-height: 1.5;
+        }
+
+        .recommendation-box .size-suggestion {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: var(--accent-dark);
+            display: inline-block;
+            margin-top: 2px;
+        }
+
+        .extra-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 12px;
+        }
+
+        .extra-btn {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            font-size: 0.85rem;
+            padding: 6px 16px;
+            border: 2px solid var(--border);
+            border-radius: 20px;
+            background: transparent;
+            color: var(--text-medium);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .extra-btn:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #fcf9f6;
+        }
+
+        /* ========================================
+           FOOTER
+           ======================================== */
+        footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        footer p {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-weight: 400;
+            font-size: 0.8rem;
+            color: var(--text-light);
+            letter-spacing: 4px;
+        }
+
+        /* ========================================
+           ANIMATIONS
+           ======================================== */
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes pop {
+            0% { transform: scale(1); }
+            40% { transform: scale(1.12); }
+            100% { transform: scale(1); }
+        }
+
+        /* ========================================
+           RESPONSIVE
+           ======================================== */
+        @media (max-width: 480px) {
+            .card {
+                padding: 18px 14px 16px;
+            }
+
+            header h1 {
+                font-size: 2rem;
+                letter-spacing: 3px;
+            }
+            header h1::before,
+            header h1::after {
+                font-size: 1.2rem;
+            }
+
+            .subtitle {
+                font-size: 0.85rem;
+                letter-spacing: 5px;
+            }
+
+            .tabs {
+                gap: 4px;
+                flex-wrap: wrap;
+            }
+
+            .tab-btn {
+                font-size: 0.7rem;
+                padding: 6px 12px;
+                flex: 1;
+                text-align: center;
+                min-width: 50px;
+                letter-spacing: 1.5px;
+            }
+
+            .input-group label {
+                font-size: 0.7rem;
+                letter-spacing: 2px;
+            }
+
+            .input-group input,
+            .input-group select {
+                font-size: 1rem;
+                padding: 10px 12px;
+            }
+
+            .convert-btn {
+                font-size: 0.9rem;
+                padding: 12px;
+                letter-spacing: 4px;
+            }
+
+            .unit-label {
+                font-size: 0.75rem;
+            }
+
+            .result-value {
+                font-size: 1.15rem;
+                min-width: 56px;
+            }
+
+            .preset-btn {
+                font-size: 0.65rem;
+                padding: 4px 10px;
+            }
+
+            .recommendation-box {
+                padding: 12px 14px;
+            }
+
+            .recommendation-box .size-suggestion {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 380px) {
+            header h1 {
+                font-size: 1.6rem;
+            }
+            header h1::before,
+            header h1::after {
+                font-size: 0.9rem;
+            }
+
+            .tab-btn {
+                font-size: 0.6rem;
+                padding: 4px 8px;
+                letter-spacing: 1px;
+            }
+
+            .input-group input,
+            .input-group select {
+                font-size: 0.85rem;
+                padding: 8px 10px;
+            }
+
+            .result-value {
+                font-size: 1rem;
+                min-width: 46px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>size converter</h1>
+            <p class="subtitle">inches · feet · centimeters · clothing</p>
+        </header>
+
+        <main class="card">
+
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="converter"> converter</button>
+                <button class="tab-btn" data-tab="clothing"> clothing</button>
+                <button class="tab-btn" data-tab="recommend"> recommend</button>
+            </div>
+
+            <!-- TAB 1 -->
+            <div class="tab-content active" id="tab-converter">
+                <section class="input-section">
+                    <div class="input-group">
+                        <label for="inputValue">enter value</label>
+                        <input type="text" id="inputValue" placeholder="type a number..." autofocus>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="unitSelector">select unit</label>
+                        <select id="unitSelector">
+                            <option value="cm">centimeters (cm)</option>
+                            <option value="inch" selected>inches (in)</option>
+                            <option value="ft">feet (ft)</option>
+                        </select>
+                    </div>
+
+                    <button class="convert-btn" id="convertBtn">✦ convert</button>
+                </section>
+
+                <div id="errorMessage" class="error-message"></div>
+
+                <section class="results">
+                    <div class="result-item">
+                        <span class="unit-label">centimeters</span>
+                        <span id="resultCm" class="result-value">—</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="unit-label">inches</span>
+                        <span id="resultInch" class="result-value">—</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="unit-label">feet</span>
+                        <span id="resultFt" class="result-value">—</span>
+                    </div>
+                </section>
+
+                <section class="presets">
+                    <span class="preset-label">quick presets</span>
+                    <div class="preset-buttons">
+                        <button class="preset-btn" data-value="29.7" data-unit="cm">a4 length</button>
+                        <button class="preset-btn" data-value="21" data-unit="cm">a4 width</button>
+                        <button class="preset-btn" data-value="80" data-unit="inch">door height</button>
+                        <button class="preset-btn" data-value="180" data-unit="cm">avg height</button>
+                        <button class="preset-btn" data-value="2.54" data-unit="cm">1 inch</button>
+                        <button class="preset-btn" data-value="30.48" data-unit="cm">1 foot</button>
+                    </div>
+                </section>
+
+                <div id="recommendPrompt" class="recommendation-box" style="display:none;">
+                    <h4>✨ want a clothing size recommendation?</h4>
+                    <p>Based on your converted height, we can suggest a clothing size for you.</p>
+                    <div class="extra-actions">
+                        <button class="extra-btn" id="recommendFromHeight">yes, recommend!</button>
+                        <button class="extra-btn" id="dismissRecommend">maybe later</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 2 -->
+            <div class="tab-content" id="tab-clothing">
+                <section class="input-section">
+                    <div class="input-group">
+                        <label for="clothingSize">enter clothing size</label>
+                        <input type="text" id="clothingSize" placeholder="e.g. 38, 10, M">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="fromSize">from</label>
+                        <select id="fromSize">
+                            <option value="EU">EU (European)</option>
+                            <option value="US">US (American)</option>
+                            <option value="UK">UK (British)</option>
+                            <option value="IT">IT (Italian)</option>
+                            <option value="FR">FR (French)</option>
+                            <option value="JP">JP (Japanese)</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="toSize">to</label>
+                        <select id="toSize">
+                            <option value="EU">EU (European)</option>
+                            <option value="US" selected>US (American)</option>
+                            <option value="UK">UK (British)</option>
+                            <option value="IT">IT (Italian)</option>
+                            <option value="FR">FR (French)</option>
+                            <option value="JP">JP (Japanese)</option>
+                        </select>
+                    </div>
+
+                    <button class="convert-btn" id="clothingConvertBtn">✦ convert size</button>
+                </section>
+
+                <div id="clothingError" class="error-message"></div>
+
+                <section class="results">
+                    <div class="result-item">
+                        <span class="unit-label">converted size</span>
+                        <span id="clothingResult" class="result-value">—</span>
+                    </div>
+                </section>
+            </div>
+
+            <!-- TAB 3 -->
+            <div class="tab-content" id="tab-recommend">
+                <section class="input-section">
+                    <div class="input-group">
+                        <label for="heightInput">your height (cm)</label>
+                        <input type="text" id="heightInput" placeholder="e.g. 175">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="ageInput">your age</label>
+                        <input type="text" id="ageInput" placeholder="e.g. 25">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="genderSelect">gender</label>
+                        <select id="genderSelect">
+                            <option value="female">female</option>
+                            <option value="male">male</option>
+                            <option value="unisex">unisex</option>
+                        </select>
+                    </div>
+
+                    <button class="convert-btn" id="recommendBtn">✦ get recommendation</button>
+                </section>
+
+                <div id="recommendError" class="error-message"></div>
+
+                <div id="recommendResult" class="recommendation-box">
+                    <h4>✨ your recommended clothing size</h4>
+                    <p>
+                        Based on your height and age, we suggest:
+                        <span id="sizeSuggestion" class="size-suggestion">—</span>
+                    </p>
+                    <p style="font-size:0.9rem; margin-top:4px; color:var(--text-medium);">
+                        <span id="sizeDetails"></span>
+                    </p>
+                </div>
+            </div>
+
+        </main>
+
+        <footer>
+            <p>✦ designed with care ✦</p>
+        </footer>
+    </div>
+
+    <script>
+        // ========================================
+        // 1. TAB SWITCHING
+        // ========================================
+
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabContents = {
+            converter: document.getElementById('tab-converter'),
+            clothing: document.getElementById('tab-clothing'),
+            recommend: document.getElementById('tab-recommend')
+        };
+
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                tabBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+
+                const tab = this.dataset.tab;
+                Object.keys(tabContents).forEach(key => {
+                    tabContents[key].classList.toggle('active', key === tab);
+                });
+            });
+        });
+
+        // ========================================
+        // 2. UNIT CONVERTER
+        // ========================================
+
+        const input = document.getElementById('inputValue');
+        const unit = document.getElementById('unitSelector');
+        const convertBtn = document.getElementById('convertBtn');
+        const errorMsg = document.getElementById('errorMessage');
+        const resultCm = document.getElementById('resultCm');
+        const resultInch = document.getElementById('resultInch');
+        const resultFt = document.getElementById('resultFt');
+        const presetBtns = document.querySelectorAll('.preset-btn');
+        const recommendPrompt = document.getElementById('recommendPrompt');
+
+        let lastConvertedHeight = null;
+
+        function convert(value, unitType) {
+            let cm, inch, ft;
+
+            switch (unitType) {
+                case 'cm':
+                    cm = value;
+                    inch = value / 2.54;
+                    ft = value / 30.48;
+                    break;
+                case 'inch':
+                    cm = value * 2.54;
+                    inch = value;
+                    ft = value / 12;
+                    break;
+                case 'ft':
+                    cm = value * 30.48;
+                    inch = value * 12;
+                    ft = value;
+                    break;
+                default:
+                    return;
+            }
+
+            resultCm.textContent = cm.toFixed(2);
+            resultInch.textContent = inch.toFixed(2);
+            resultFt.textContent = ft.toFixed(2);
+
+            lastConvertedHeight = Math.round(cm);
+
+            if (lastConvertedHeight > 0) {
+                recommendPrompt.style.display = 'block';
+                setTimeout(() => {
+                    recommendPrompt.style.animation = 'fadeIn 0.5s ease';
+                }, 100);
+            }
+
+            document.querySelectorAll('.result-value').forEach(el => {
+                el.classList.remove('pop');
+                void el.offsetWidth;
+                el.classList.add('pop');
+            });
+        }
+
+        function validate(raw) {
+            const val = raw.trim();
+            if (val === '') return { ok: false, msg: 'please enter a number' };
+            const num = Number(val);
+            if (isNaN(num)) return { ok: false, msg: 'please enter a valid number' };
+            if (num < 0) return { ok: false, msg: 'please enter a positive value' };
+            return { ok: true, value: num };
+        }
+
+        function showError(el, msg) {
+            el.textContent = '✦ ' + msg;
+            el.classList.add('show');
+            clearTimeout(el._timer);
+            el._timer = setTimeout(() => el.classList.remove('show'), 2800);
+        }
+
+        function hideError(el) {
+            el.classList.remove('show');
+        }
+
+        function handleConvert() {
+            const validation = validate(input.value);
+            if (!validation.ok) {
+                showError(errorMsg, validation.msg);
+                resultCm.textContent = '—';
+                resultInch.textContent = '—';
+                resultFt.textContent = '—';
+                recommendPrompt.style.display = 'none';
+                return;
+            }
+            hideError(errorMsg);
+            convert(validation.value, unit.value);
+        }
+
+        function handlePreset(e) {
+            const btn = e.currentTarget;
+            input.value = btn.dataset.value;
+            unit.value = btn.dataset.unit;
+            handleConvert();
+
+            btn.style.transform = 'scale(0.92)';
+            setTimeout(() => btn.style.transform = '', 160);
+        }
+
+        document.getElementById('recommendFromHeight').addEventListener('click', function() {
+            if (lastConvertedHeight) {
+                tabBtns.forEach(b => b.classList.remove('active'));
+                document.querySelector('[data-tab="recommend"]').classList.add('active');
+                tabContents.converter.classList.remove('active');
+                tabContents.clothing.classList.remove('active');
+                tabContents.recommend.classList.add('active');
+
+                document.getElementById('heightInput').value = lastConvertedHeight;
+                setTimeout(() => document.getElementById('recommendBtn').click(), 300);
+            }
+            recommendPrompt.style.display = 'none';
+        });
+
+        document.getElementById('dismissRecommend').addEventListener('click', function() {
+            recommendPrompt.style.display = 'none';
+        });
+
+        convertBtn.addEventListener('click', handleConvert);
+        input.addEventListener('keydown', e => { if (e.key === 'Enter') handleConvert(); });
+        input.addEventListener('input', () => hideError(errorMsg));
+        presetBtns.forEach(btn => btn.addEventListener('click', handlePreset));
+
+        // ========================================
+        // 3. CLOTHING SIZE CONVERTER
+        // ========================================
+
+        function convertClothingSize(size, from, to) {
+            const s = String(size).trim().toUpperCase();
+
+            const conversions = {
+                'EU': {
+                    'US': { '32': '0', '34': '2', '36': '4', '38': '6', '40': '8', '42': '10', '44': '12', '46': '14', '48': '16' },
+                    'UK': { '32': '4', '34': '6', '36': '8', '38': '10', '40': '12', '42': '14', '44': '16', '46': '18', '48': '20' },
+                    'IT': { '32': '36', '34': '38', '36': '40', '38': '42', '40': '44', '42': '46', '44': '48', '46': '50', '48': '52' },
+                    'FR': { '32': '34', '34': '36', '36': '38', '38': '40', '40': '42', '42': '44', '44': '46', '46': '48', '48': '50' },
+                    'JP': { '32': '3', '34': '5', '36': '7', '38': '9', '40': '11', '42': '13', '44': '15', '46': '17', '48': '19' }
+                },
+                'US': {
+                    'EU': { '0': '32', '2': '34', '4': '36', '6': '38', '8': '40', '10': '42', '12': '44', '14': '46', '16': '48' },
+                    'UK': { '0': '4', '2': '6', '4': '8', '6': '10', '8': '12', '10': '14', '12': '16', '14': '18', '16': '20' },
+                    'IT': { '0': '36', '2': '38', '4': '40', '6': '42', '8': '44', '10': '46', '12': '48', '14': '50', '16': '52' },
+                    'FR': { '0': '34', '2': '36', '4': '38', '6': '40', '8': '42', '10': '44', '12': '46', '14': '48', '16': '50' },
+                    'JP': { '0': '3', '2': '5', '4': '7', '6': '9', '8': '11', '10': '13', '12': '15', '14': '17', '16': '19' }
+                },
+                'UK': {
+                    'EU': { '4': '32', '6': '34', '8': '36', '10': '38', '12': '40', '14': '42', '16': '44', '18': '46', '20': '48' },
+                    'US': { '4': '0', '6': '2', '8': '4', '10': '6', '12': '8', '14': '10', '16': '12', '18': '14', '20': '16' },
+                    'IT': { '4': '36', '6': '38', '8': '40', '10': '42', '12': '44', '14': '46', '16': '48', '18': '50', '20': '52' },
+                    'FR': { '4': '34', '6': '36', '8': '38', '10': '40', '12': '42', '14': '44', '16': '46', '18': '48', '20': '50' },
+                    'JP': { '4': '3', '6': '5', '8': '7', '10': '9', '12': '11', '14': '13', '16': '15', '18': '17', '20': '19' }
+                },
+                'IT': {
+                    'EU': { '36': '32', '38': '34', '40': '36', '42': '38', '44': '40', '46': '42', '48': '44', '50': '46', '52': '48' },
+                    'US': { '36': '0', '38': '2', '40': '4', '42': '6', '44': '8', '46': '10', '48': '12', '50': '14', '52': '16' },
+                    'UK': { '36': '4', '38': '6', '40': '8', '42': '10', '44': '12', '46': '14', '48': '16', '50': '18', '52': '20' },
+                    'FR': { '36': '34', '38': '36', '40': '38', '42': '40', '44': '42', '46': '44', '48': '46', '50': '48', '52': '50' },
+                    'JP': { '36': '3', '38': '5', '40': '7', '42': '9', '44': '11', '46': '13', '48': '15', '50': '17', '52': '19' }
+                },
+                'FR': {
+                    'EU': { '34': '32', '36': '34', '38': '36', '40': '38', '42': '40', '44': '42', '46': '44', '48': '46', '50': '48' },
+                    'US': { '34': '0', '36': '2', '38': '4', '40': '6', '42': '8', '44': '10', '46': '12', '48': '14', '50': '16' },
+                    'UK': { '34': '4', '36': '6', '38': '8', '40': '10', '42': '12', '44': '14', '46': '16', '48': '18', '50': '20' },
+                    'IT': { '34': '36', '36': '38', '38': '40', '40': '42', '42': '44', '44': '46', '46': '48', '48': '50', '50': '52' },
+                    'JP': { '34': '3', '36': '5', '38': '7', '40': '9', '42': '11', '44': '13', '46': '15', '48': '17', '50': '19' }
+                },
+                'JP': {
+                    'EU': { '3': '32', '5': '34', '7': '36', '9': '38', '11': '40', '13': '42', '15': '44', '17': '46', '19': '48' },
+                    'US': { '3': '0', '5': '2', '7': '4', '9': '6', '11': '8', '13': '10', '15': '12', '17': '14', '19': '16' },
+                    'UK': { '3': '4', '5': '6', '7': '8', '9': '10', '11': '12', '13': '14', '15': '16', '17': '18', '19': '20' },
+                    'IT': { '3': '36', '5': '38', '7': '40', '9': '42', '11': '44', '13': '46', '15': '48', '17': '50', '19': '52' },
+                    'FR': { '3': '34', '5': '36', '7': '38', '9': '40', '11': '42', '13': '44', '15': '46', '17': '48', '19': '50' }
+                }
+            };
+
+            if (conversions[from] && conversions[from][to] && conversions[from][to][s]) {
+                return conversions[from][to][s];
+            }
+
+            if (from !== 'EU' && to !== 'EU') {
+                if (conversions[from] && conversions[from]['EU'] && conversions[from]['EU'][s]) {
+                    const euSize = conversions[from]['EU'][s];
+                    if (conversions['EU'] && conversions['EU'][to] && conversions['EU'][to][euSize]) {
+                        return conversions['EU'][to][euSize];
+                    }
+                }
+                if (from !== 'US' && to !== 'US') {
+                    if (conversions[from] && conversions[from]['US'] && conversions[from]['US'][s]) {
+                        const usSize = conversions[from]['US'][s];
+                        if (conversions['US'] && conversions['US'][to] && conversions['US'][to][usSize]) {
+                            return conversions['US'][to][usSize];
+                        }
+                    }
+                }
+            }
+
+            const letterMap = {
+                'S': { 'EU': '34', 'US': '2', 'UK': '6', 'IT': '38', 'FR': '36', 'JP': '5' },
+                'M': { 'EU': '38', 'US': '6', 'UK': '10', 'IT': '42', 'FR': '40', 'JP': '9' },
+                'L': { 'EU': '42', 'US': '10', 'UK': '14', 'IT': '46', 'FR': '44', 'JP': '13' },
+                'XL': { 'EU': '46', 'US': '14', 'UK': '18', 'IT': '50', 'FR': '48', 'JP': '17' },
+                'XXL': { 'EU': '48', 'US': '16', 'UK': '20', 'IT': '52', 'FR': '50', 'JP': '19' }
+            };
+
+            if (letterMap[s]) {
+                return letterMap[s][to] || '—';
+            }
+
+            if (from === to) return s;
+            return '—';
+        }
+
+        const clothingSizeInput = document.getElementById('clothingSize');
+        const fromSize = document.getElementById('fromSize');
+        const toSize = document.getElementById('toSize');
+        const clothingConvertBtn = document.getElementById('clothingConvertBtn');
+        const clothingError = document.getElementById('clothingError');
+        const clothingResult = document.getElementById('clothingResult');
+
+        function handleClothingConvert() {
+            const size = clothingSizeInput.value.trim();
+            const from = fromSize.value;
+            const to = toSize.value;
+
+            if (size === '') {
+                showError(clothingError, 'please enter a clothing size');
+                clothingResult.textContent = '—';
+                return;
+            }
+
+            hideError(clothingError);
+
+            const result = convertClothingSize(size, from, to);
+            clothingResult.textContent = result;
+
+            clothingResult.classList.remove('pop');
+            void clothingResult.offsetWidth;
+            clothingResult.classList.add('pop');
+        }
+
+        clothingConvertBtn.addEventListener('click', handleClothingConvert);
+        clothingSizeInput.addEventListener('keydown', e => {
+            if (e.key === 'Enter') handleClothingConvert();
+        });
+        clothingSizeInput.addEventListener('input', () => hideError(clothingError));
+
+        // ========================================
+        // 4. HEIGHT → CLOTHING SIZE RECOMMENDER
+        // ========================================
+
+        const heightInput = document.getElementById('heightInput');
+        const ageInput = document.getElementById('ageInput');
+        const genderSelect = document.getElementById('genderSelect');
+        const recommendBtn = document.getElementById('recommendBtn');
+        const recommendError = document.getElementById('recommendError');
+        const recommendResult = document.getElementById('recommendResult');
+        const sizeSuggestion = document.getElementById('sizeSuggestion');
+        const sizeDetails = document.getElementById('sizeDetails');
+
+        function getClothingSizeFromHeight(height, age, gender) {
+            const femaleSizes = [
+                { min: 145, max: 155, size: 'XS (32-34 EU / 0-2 US)', details: 'Petite / Extra Small' },
+                { min: 155, max: 163, size: 'S (34-36 EU / 2-4 US)', details: 'Small' },
+                { min: 163, max: 170, size: 'M (38-40 EU / 6-8 US)', details: 'Medium' },
+                { min: 170, max: 178, size: 'L (42-44 EU / 10-12 US)', details: 'Large' },
+                { min: 178, max: 188, size: 'XL (46-48 EU / 14-16 US)', details: 'Extra Large' },
+                { min: 188, max: 999, size: 'XXL (48+ EU / 16+ US)', details: 'Extra Extra Large' }
+            ];
+
+            const maleSizes = [
+                { min: 155, max: 165, size: 'XS (44-46 EU / 34-36 US)', details: 'Extra Small' },
+                { min: 165, max: 173, size: 'S (46-48 EU / 36-38 US)', details: 'Small' },
+                { min: 173, max: 180, size: 'M (48-50 EU / 38-40 US)', details: 'Medium' },
+                { min: 180, max: 188, size: 'L (50-52 EU / 40-42 US)', details: 'Large' },
+                { min: 188, max: 195, size: 'XL (52-54 EU / 42-44 US)', details: 'Extra Large' },
+                { min: 195, max: 999, size: 'XXL (54+ EU / 44+ US)', details: 'Extra Extra Large' }
+            ];
+
+            const unisexSizes = [
+                { min: 140, max: 152, size: 'XS (32-34 EU)', details: 'Extra Small / Youth' },
+                { min: 152, max: 162, size: 'S (34-36 EU)', details: 'Small / Youth' },
+                { min: 162, max: 172, size: 'M (38-40 EU)', details: 'Medium' },
+                { min: 172, max: 182, size: 'L (42-44 EU)', details: 'Large' },
+                { min: 182, max: 192, size: 'XL (46-48 EU)', details: 'Extra Large' },
+                { min: 192, max: 999, size: 'XXL (48+ EU)', details: 'Extra Extra Large' }
+            ];
+
+            let sizeChart;
+            if (gender === 'female') sizeChart = femaleSizes;
+            else if (gender === 'male') sizeChart = maleSizes;
+            else sizeChart = unisexSizes;
+
+            let adjustedHeight = height;
+            if (age < 16) {
+                adjustedHeight = height * 0.95;
+            } else if (age > 60) {
+                adjustedHeight = height * 1.02;
+            }
+
+            for (let range of sizeChart) {
+                if (adjustedHeight >= range.min && adjustedHeight < range.max) {
+                    return range;
+                }
+            }
+
+            let closest = sizeChart[0];
+            let minDiff = Math.abs(height - sizeChart[0].min);
+            for (let range of sizeChart) {
+                const diff = Math.abs(height - range.min);
+                if (diff < minDiff) {
+                    minDiff = diff;
+                    closest = range;
+                }
+            }
+            return closest;
+        }
+
+        function handleRecommend() {
+            const height = parseFloat(heightInput.value.trim());
+            const age = parseFloat(ageInput.value.trim());
+            const gender = genderSelect.value;
+
+            if (isNaN(height) || height <= 0) {
+                showError(recommendError, 'please enter a valid height (cm)');
+                recommendResult.classList.remove('show');
+                return;
+            }
+
+            if (isNaN(age) || age <= 0 || age > 120) {
+                showError(recommendError, 'please enter a valid age (1-120)');
+                recommendResult.classList.remove('show');
+                return;
+            }
+
+            hideError(recommendError);
+
+            const result = getClothingSizeFromHeight(height, age, gender);
+            sizeSuggestion.textContent = result.size;
+            sizeDetails.textContent = result.details + ` • Height: ${height}cm • Age: ${age}`;
+
+            recommendResult.classList.add('show');
+            recommendResult.style.animation = 'fadeIn 0.5s ease';
+
+            sizeSuggestion.classList.remove('pop');
+            void sizeSuggestion.offsetWidth;
+            sizeSuggestion.classList.add('pop');
+        }
+
+        recommendBtn.addEventListener('click', handleRecommend);
+        heightInput.addEventListener('keydown', e => { if (e.key === 'Enter') handleRecommend(); });
+        ageInput.addEventListener('keydown', e => { if (e.key === 'Enter') handleRecommend(); });
+        heightInput.addEventListener('input', () => hideError(recommendError));
+        ageInput.addEventListener('input', () => hideError(recommendError));
+
+        // ========================================
+        // 5. AUTO-FOCUS
+        // ========================================
+
+        document.addEventListener('DOMContentLoaded', () => {
+            input.focus();
+            recommendResult.classList.remove('show');
+        });
+    </script>
+
+</body>
+</html>
